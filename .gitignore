@@ -1,3 +1,7 @@
-
-storage/model_checkpoints/
-diagrams/
+storage/model_checkpoints/*
+storage/wordnet_splits/*
+diagrams/*
+diagrams_png/*
+diagrams_specific/*
+example_pics/*
+pretrained_heads/*
