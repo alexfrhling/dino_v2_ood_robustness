@@ -29,13 +29,26 @@ The downloaded head should be placed under: `/resources/pretrained_heads/`
 ## Datasets 
 
 The analyses made are based on the embeddings of four different datasets: `ImageNet-1k`, `ImageNet-R`, `ImageNet-V2`, and `ImageNet-C`. For `ImageNet-1k` it is enough to compute the embeddings of the validation set. For `ImageNet-R`, `ImageNet-V2`, and `ImageNet-C` the embeddings of all samples must be computed in order to conduct the experiments in the same scope as in the thesis. 
+
 For `ImageNet-1k` and `ImageNet-R` the computed embeddings are already provided in the repository under: `/resources/vit_s_embeddings/`. 
+Due to file-size limitations on GitHub the `ImageNet-1k`-embeddings are stored across the two files. In order to create a file that stores the embeddings of the `ImageNet-1k` validation set in a single dictionary, first navigate to `/scripts`. 
+Then apply this command: 
+``` 
+python prepare_inet_1k_val_embeds.py 
+``` 
 
 There are three different `ImageNet-V2` datasets: Threshold0.7, TopImages, and MatchedFrequency. All three were used in the experiments. 
-These three datasets can be downloaded from here: https://huggingface.co/datasets/vaishaal/ImageNetV2/tree/main
+These three datasets can be downloaded from here: https://huggingface.co/datasets/vaishaal/ImageNetV2/tree/main. Each of the three should be placed after unpacking as is under the `dataset` folder. 
 
 The `ImageNet-C` benchmark provides 95 validation datasets, each in size of the original ImageNet-1k validation set. 
-The 95 ImageNet-C validation sets can be downloaded from here: https://zenodo.org/records/2235448 
+The 95 ImageNet-C validation sets are distributed among five different files, which can be downloaded from here: https://zenodo.org/records/2235448. 
+When unpacking the downloaded files, the result should be placed under `/datasets/ImageNetC/`. 
+
+## Embedding computation 
+
+All computed embeddings are expected to be stored under `/resources/vit_s_embeddings/`. Only in case of `ImageNet-C` the embeddings are stored under an additional folder `/resources/vit_s_embeddings/imagenet_c`.  
+
+For the computation of the `ImageNet-V2`-embeddings the notebook `compute_embeddings.py` for example can be employed. For the computation of `ImageNet-C`-embeddings it is advisable to use the script `compute_inet_c_embeds.py` as this is solely designed for that task. 
 
 
 

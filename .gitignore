@@ -5,3 +5,4 @@ diagrams_specific/*
 example_pics/*
 resources/pretrained_heads/*
 results/*
+scripts/compute_inet_c_embeds_progress.txt
