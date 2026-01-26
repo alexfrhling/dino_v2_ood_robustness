@@ -10,7 +10,7 @@
 def map_wnid_to_classnames():
     map_wnid_to_classname = dict()
 
-    with open('../../resources/classnames.txt', 'r') as classnames_file: 
+    with open('../resources/classnames.txt', 'r') as classnames_file: 
         for line in classnames_file.readlines():
             splitted_line = line.split(' ')
             wnid = splitted_line[0]
@@ -26,7 +26,7 @@ def map_wnid_to_classnames():
 def map_wnid_to_word():
     map_wnid_to_word = dict()
 
-    with open('../../resources/words.txt', 'r') as words_file: 
+    with open('../resources/words.txt', 'r') as words_file: 
         for line in words_file.readlines():
             splitted_line = line.split('\t')
             # extract wnid of line
@@ -78,7 +78,7 @@ class ImagenetSemanticTree():
         if len(self.all_nodes) == 0:
             return False 
         
-        with open(f'../../resources/wordnet.is_a.txt') as is_a_file: 
+        with open(f'../resources/wordnet.is_a.txt') as is_a_file: 
             n = 0
             for line in is_a_file.readlines():
                 parent_wnid, child_wnid = line.split(' ')
@@ -99,7 +99,7 @@ class ImagenetSemanticTree():
 
     def build_tree(self):
 
-        with open(f'../../resources/wordnet.is_a.txt') as is_a_file: 
+        with open(f'../resources/wordnet.is_a.txt') as is_a_file: 
             for line in is_a_file.readlines():
                 parent_wnid, child_wnid = line.split(' ')
                 child_wnid = child_wnid.rstrip('\n')
