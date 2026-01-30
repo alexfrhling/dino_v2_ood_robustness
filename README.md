@@ -52,7 +52,7 @@ For the computation of the `ImageNet-V2`-embeddings the notebook `compute_embedd
 
 # Experiments 
 
-The notebook `compute_statistics` measures changes in the embedding space induced by covariate shift. In the first part of the notebook, 200 combinations of classes are defined, which form the basis for the analysis of embedding changes. Four different measures are applied to each class combination to quantify the difference between the embeddings of a combination. Finally, the results across all 200 class combinations are summarized and visualized in diagrams. To reproduce the results described in my thesis, `class_a_classes_b_thesis.csv` should be used instead of `class_a_classes_b.csv` for the defining the class-A-to-class-B mappings. 
+The notebook `compute_statistics` measures changes in the embedding space induced by covariate shift. In the first part of the notebook, 200 combinations of classes are defined, which form the basis for the analysis of embedding changes. Four different measures are applied to each class combination to quantify the difference between the embeddings of a combination. Finally, the results across all 200 class combinations are summarized and visualized in diagrams. To reproduce the results described in my thesis, `class_a_classes_b_thesis.csv` should be used instead of `class_a_classes_b.csv` for defining the class-A-to-class-B mappings. 
 
 The notebook `linear_classifier` employs the pretrained head to compute the accuracy for each of the OOD datasets used. The accuracy values are set in relation to the results of the `compute_statistics` notebook.
 
