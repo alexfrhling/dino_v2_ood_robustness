@@ -1,7 +1,5 @@
 
-diagrams/*
-diagrams_png/*
-diagrams_specific/*
+
 example_pics/*
 resources/pretrained_heads/*
 results/*

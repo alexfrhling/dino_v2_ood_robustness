@@ -50,6 +50,14 @@ All computed embeddings are expected to be stored under `/resources/vit_s_embedd
 
 For the computation of the `ImageNet-V2`-embeddings the notebook `compute_embeddings.py` for example can be employed. For the computation of `ImageNet-C`-embeddings it is advisable to use the script `compute_inet_c_embeds.py` as this is solely designed for that task. 
 
+# Experiments 
+
+The notebook `compute_statistics` measures changes in the embedding space induced by covariate shift. In the first part of the notebook, 200 combinations of classes are defined, which form the basis for the analysis of embedding changes. Four different measures are applied to each class combination to quantify the difference between the embeddings of a combination. Finally, the results across all 200 class combinations are summarized and visualized in diagrams.
+
+The notebook `linear_classifier` employs the pretrained head to computing the accuracy for each of the OOD datasets used. The accuracy values are set in relation to the results of the `compute_statistics` notebook.
+
+The notebooks `example_pictures` and `example_diagrams` are both intended to provide a more detailed look at the methodological approach used in `compute_statistics`. The `example_pictures`  notebook can be used to retrieve samples for a specific class combination. The `example_diagrams` notebook applies the four measures to a specific comparison sequence and visualizes the results in the same style as in the compute_statistics notebook. 
+
 
 
 
