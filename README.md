@@ -38,7 +38,7 @@ python prepare_inet_1k_val_embeds.py
 ``` 
 
 There are three different `ImageNet-V2` datasets: Threshold0.7, TopImages, and MatchedFrequency. All three were used in the experiments. 
-These three datasets can be downloaded from here: https://huggingface.co/datasets/vaishaal/ImageNetV2/tree/main. Each of the three should be placed after unpacking as is under the `dataset` folder. 
+These three datasets can be downloaded from here: https://huggingface.co/datasets/vaishaal/ImageNetV2/tree/main. Each of the three should be placed after unpacking as is under the `/datasets` folder. 
 
 The `ImageNet-C` benchmark provides 95 validation datasets, each in size of the original ImageNet-1k validation set. 
 The 95 ImageNet-C validation sets are distributed among five different files, which can be downloaded from here: https://zenodo.org/records/2235448. 

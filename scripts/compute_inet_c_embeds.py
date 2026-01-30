@@ -11,8 +11,7 @@ from dinov2_ood_utilities.custom_datasets import CustomizedImageFolder, Customiz
 
 
 INET_C_EMBEDS_STORE_PATH = '../resources/vit_s_embeddings/imagenet_c'
-#INET_C_SRC_PATH = '../datasets/ImageNetC'
-INET_C_SRC_PATH = '/home/stud/afroehli/datasets/ImagenetC'
+INET_C_SRC_PATH = '../datasets/ImageNetC'
 
 # load general list for label to wnid mapping
 class_to_index_mapping = []
@@ -26,7 +25,7 @@ timm_model = 'vit_small_patch14_dinov2'
 timm_model_conf = timm.data.resolve_model_data_config(timm_model)
 timm_model_conf['input_size'] = (3, 518, 518)
 timm_transform = timm.data.create_transform(**timm_model_conf, is_training=False)
-# print(f'Following transform will be applied: {timm_transform}')
+print(f'Following transform will be applied: {timm_transform}')
 
 # load list with all ImageNet-1k wnids
 with open('../resources/imagenet_1k_label_order.txt', 'r') as label_order_file:
@@ -44,7 +43,7 @@ for dset_path in inet_c_src_paths:
     dataloaders.append((torch.utils.data.DataLoader(dset, batch_size=128, shuffle=False, num_workers=8, pin_memory=True), 
                        f'{INET_C_EMBEDS_STORE_PATH}/{cor_type[0]}/sev_{cor_type[1]}.pkl',
                        f'{INET_C_EMBEDS_STORE_PATH}/{cor_type[0]}'))
-# print(f'Number of created dataloaders: {len(dataloaders)}')
+print(f'Number of created dataloaders: {len(dataloaders)}')
     
 
 # define model to be used 
@@ -68,14 +67,17 @@ with torch.no_grad():
     for loader_n, (loader, str_path, str_path_dir) in enumerate(dataloaders):
         
         cor_type_loader = str_path.split('/')[-2:]
-        # print(f'Next calculate results for dataset: {f'{cor_type_loader[0]}_{cor_type_loader[1]}'.removesuffix('.pkl')}')
-        # print(f'Will be stored under: {str_path}')
+        print(f'Next calculate results for dataset: {f'{cor_type_loader[0]}_{cor_type_loader[1]}'.removesuffix('.pkl')}')
+        print(f'Will be stored under: {str_path}')
 
         batches_per_loader = len(loader)
         history_processed_batches = 0
 
         # create new results-dict for each loader 
         model_results = dict()
+
+        loader_progress_old = 0 
+        print(f'Progress: 0%|', end='')
 
         for batch_n, (samples, sample_labels) in enumerate(loader):
 
@@ -94,6 +96,15 @@ with torch.no_grad():
                 except KeyError:
                     model_results[sample_item_wnid] = [sample_out]
                     
+            loader_progress_new = int(((batch_n + 1) / len(loader)) * 100) 
+            if loader_progress_old < loader_progress_new: 
+                print('#', end='', flush=True)
+                if loader_progress_new == 50: 
+                    print('|50%|', end='', flush=True)
+                loader_progress_old = loader_progress_new
+
+        print('|100%')
+
         try:
             with open(str_path, 'wb') as pkl_file:
                 pickle.dump(model_results, pkl_file, pickle.HIGHEST_PROTOCOL)
